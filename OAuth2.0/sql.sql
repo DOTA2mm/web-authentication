@@ -16,3 +16,18 @@ INSERT INTO oauth_clients VALUES (
 	'世界上最好用的炒股软件',
 	'http://localhost:1002/auth/callback'
 );
+# 用户信息RO
+CREATE TABLE resource_owners (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '用户id',
+	user_name VARCHAR(10) NOT NULL COMMENT '用户名',
+	user_pwd VARCHAR(15) NOT NULL COMMENT '密码',
+	user_nickname VARCHAR(15) DEFAULT '' COMMENT '昵称'
+) ENGINE = INNODB CHARSET = utf8 COMMENT '注册用户表';
+# 插入一条用户信息
+INSERT INTO resource_owners VALUES (
+	NULL,
+	'upchina',
+	'upchina333',
+	'优品财富'
+)
+

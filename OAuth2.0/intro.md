@@ -168,3 +168,4 @@ E步骤中，认证服务器发送的HTTP回复，包含以下参数：
 ### 参考连接
 [帮你深入理解OAuth2.0协议](http://blog.csdn.net/seccloud/article/details/8192707)  
 [理解OAuth 2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)  
+[GitHub-oauthjs/node-oauth2-server](https://github.com/oauthjs/node-oauth2-server)
