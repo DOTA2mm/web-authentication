@@ -1,5 +1,6 @@
 const mysql = require('promise-mysql');
-const conf = require('../config');
+const conf = require('../lib/config');
+const debug = require('debug')('Models')
 
 const userModel = {};
 const connect = mysql.createConnection({
@@ -9,9 +10,10 @@ const connect = mysql.createConnection({
   database: conf.db.database
 });
 
-userModel.queryUser = function (username) {
+userModel.queryUser = function (username, password) {
+  debug(username, password);
   connect.then(conn => {
-    return conn.query(`select * from resource_owners where username = ${username}`);
+    return conn.query(`select * from resource_owners where user_name = '${username}' and user_pwd = '${password}';`);
   })
 }
 

@@ -29,5 +29,5 @@ INSERT INTO resource_owners VALUES (
 	'upchina',
 	'upchina333',
 	'优品财富'
-)
+);
 
