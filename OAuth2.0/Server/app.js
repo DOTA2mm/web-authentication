@@ -9,6 +9,7 @@ var RedisStore = require('connect-redis')(session);
 
 var index = require('./routes/index');
 var login = require('./routes/login');
+var authorize = require('./routes/authorize');
 
 var app = express();
 
@@ -31,7 +32,8 @@ app.use(session({
   }),
   secret: 'oauth',
   cookie: {
-    maxAge: 30 * 1000
+    maxAge: 30 * 60 * 1000,
+    httpOnly: true
   },
   resave: true,
   saveUninitialized: true
@@ -39,6 +41,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/login', login);
+app.use('/authorize', authorize);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

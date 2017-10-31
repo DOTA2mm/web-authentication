@@ -2,8 +2,8 @@
  * 工具函数
  */
 var crypto = require('crypto');
-var desIv = Buffer.from('tfhk1597');
-var desKy = Buffer.from('89h5f6kt');
+var desIv = Buffer.from('openauth');
+var desKy = Buffer.from('85360355');
 var utils = {};
 
 // 随机长度字符串
