@@ -2,14 +2,13 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-lg-8 col-md-offset-2">
+      <div class="col-lg-6 col-md-offset-3">
           <h1 class="page-header">应用授权</h1>
       </div>
-      <!-- /.col-lg-12 -->
   </div>
   <!-- /.row -->
   <div class="row">
-    <div class="col-lg-8 col-md-offset-2">
+    <div class="col-lg-6 col-md-offset-3">
       <div class="panel panel-primary">
         <div class="panel-heading">
           授权中心
@@ -18,34 +17,23 @@
           <div class="media">
             <div class="media-left">
               <a href="#">
-                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWY3ODdhYWRmMCB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Zjc4N2FhZGYwIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                <img class="media-object" data-src="holder.js/64x64" alt="icon" style="width: 64px; height: 64px;" src="<%= state.clientInfo.c_icon %>"
                   data-holder-rendered="true">
               </a>
             </div>
             <div class="media-body">
-              <h4 class="media-heading">Media heading</h4>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-              felis in faucibus.
+              <h3 class="media-heading"><%= state.clientInfo.c_name %></h4>
+              <h4><%= state.clientInfo.c_desc %></h4>
             </div>
           </div>
-          <p class="lead">将允许豆瓣登录进行以下操作：</p>
-          <p>This is an example of standard paragraph text. This is an example of
-            <a href="#">link anchor text</a> within body copy.</p>
-          <p>
-            <small>This is an example of small, fine print text.</small>
-          </p>
-          <p>
-            <strong>This is an example of strong, bold text.</strong>
-          </p>
-          <p>
-            <em>This is an example of emphasized, italic text.</em>
-          </p>
+          <hr>
+          <p class="lead">将允许<%= state.clientInfo.c_name %>进行以下操作：</p>
           <br>
-          <h4>Alignment Helpers</h4>
-          <p class="text-left">Left aligned text.</p>
-          <p class="text-center">Center aligned text.</p>
-          <p class="text-right">Right aligned text.</p>
+          <ul>
+            <li>获得你的个人信息，好友关系</li>
+            <li>获得你的评论</li>
+          </ul>
+          <p class="text-right text-success">授权中心认证应用</a></p>
         </div>
         <div class="panel-footer text-right">
          <button type="button" class="btn btn-success" id="confirm">&emsp;确定&emsp;</button>
@@ -59,5 +47,5 @@
 </div>
 
 <%- include('./common/jslib') %>
-<script src="/js/login.js"></script>
+<script src="/js/authorize.js"></script>
 <%- include('./common/footer') %>

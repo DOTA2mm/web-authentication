@@ -39,8 +39,20 @@ store.get = function (key) {
                 }
                 resolve(valObj);
             }
-        })
-    })
+        });
+    });
+}
+
+store.del = function (key) {
+    return new Promise((resolve, reject) => {
+        client.del(key, (err, reply) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(reply);
+            }
+        });
+    });
 }
 
 module.exports = store;

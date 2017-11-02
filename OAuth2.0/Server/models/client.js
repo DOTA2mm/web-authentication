@@ -13,7 +13,7 @@ const connPool = mysql.createPool({
 });
 
 clientModel.queryClientInfoById = function (clientId) {
-    return connPool.query(`SELECT * FROM oauth_clients WHERE c_id = ${clientId}`);
+    return connPool.query(`SELECT * FROM oauth_clients WHERE c_id = '${clientId}';`);
 }
 
 module.exports = clientModel;

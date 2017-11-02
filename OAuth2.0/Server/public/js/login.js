@@ -8,7 +8,7 @@ $(function () {
             data: formData
         }).done(function (result) {
             if (result.errCode === 0) {
-                location.href = './authorize'
+                location.href = './authorize' + location.search;
             } else {
                 $('.text-danger').text(result.errMsg);
             }
