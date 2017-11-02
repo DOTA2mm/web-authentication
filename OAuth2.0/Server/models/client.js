@@ -2,7 +2,7 @@ const mysql = require('promise-mysql');
 const conf = require('../lib/config');
 const debug = require('debug')('Models')
 
-const userModel = {};
+const clientModel = {};
 
 const connPool = mysql.createPool({
   host: conf.mysql.host,
@@ -12,9 +12,8 @@ const connPool = mysql.createPool({
   connectionLimit: 10
 });
 
-userModel.queryUser = function (username, password) {
-  debug(username, password);
-  return connPool.query(`SELECT * FROM resource_owners WHERE user_name = '${username}' and user_pwd = '${password}';`)
+clientModel.queryClientInfoById = function (clientId) {
+    return connPool.query(`SELECT * FROM oauth_clients WHERE c_id = ${clientId}`);
 }
 
-module.exports = userModel;
+module.exports = clientModel;

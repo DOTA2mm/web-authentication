@@ -30,4 +30,6 @@ INSERT INTO resource_owners VALUES (
 	'upchina333',
 	'优品财富'
 );
-
+# 表结构更新
+ALTER TABLE oauth_clients ADD c_icon VARCHAR(200) AFTER c_redirecturi;
+UPDATE oauth_clients SET c_icon = 'http://img.upchinapro.com/share/logo/up.png' WHERE id = 1;

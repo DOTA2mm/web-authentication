@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('/authorize');
+  res.redirect('./OAuth2/authorize');
 });
+
+router.use('/OAuth2/login', require('./login'));
+router.use('/OAuth2/authorize', require('./authorize'));
 
 module.exports = router;
