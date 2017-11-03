@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
       <div class="col-lg-6 col-md-offset-3">
-          <h1 class="page-header">应用授权</h1>
+          <h1 class="page-header">应用授权<small>Authorization Service</small></h1>
       </div>
   </div>
   <!-- /.row -->
@@ -27,7 +27,7 @@
             </div>
           </div>
           <hr>
-          <p class="lead">将允许<%= state.clientInfo.c_name %>进行以下操作：</p>
+          <h4>亲爱的<span class="text-primary"><%= userInfo.user_nickname %></span>，您将允许<%= state.clientInfo.c_name %>进行以下操作：</h4>
           <br>
           <ul>
             <li>获得你的个人信息，好友关系</li>

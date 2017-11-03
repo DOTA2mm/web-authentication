@@ -10,11 +10,11 @@ router.get('/', init, checkParam, checkLogin, function (req, res, next) {
   res.render('authorize');
 });
 // 确认授权
-router.post('/',  init, checkParam, checkLogin, generateCode, function (req, res, next) {
-
-});
+router.post('/', init, checkParam, checkLogin, generateCode);
 // 拒绝授权
-router.put('/')
+router.put('/');
+// 验证客户端 access_token 请求
+router.post('/access', init)
 
 // 初始化错误类型
 function init (req, res, next) {
@@ -83,7 +83,7 @@ function checkLogin (req, res, next) {
 function generateCode (req, res, next) {
   var clientInfo = res.locals.state.clientInfo;
   var code = utils.randomWord(false, 20);
-  rdsStore.set(clientInfo.c_id, {clientInfo: clientInfo, userId: req.session.userInfo.id}, 600).then(reply => {
+  rdsStore.set(clientInfo.c_id, {clientInfo: clientInfo, userInfo: req.session.userInfo}, 600).then(reply => {
     console.log(reply);
     if (reply === 'OK') {
       res.redirect(clientInfo.c_redirecturi + '?code=' + code + '&state=' + clientInfo.state);

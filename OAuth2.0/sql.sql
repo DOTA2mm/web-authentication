@@ -33,3 +33,16 @@ INSERT INTO resource_owners VALUES (
 # 表结构更新
 ALTER TABLE oauth_clients ADD c_icon VARCHAR(200) AFTER c_redirecturi;
 UPDATE oauth_clients SET c_icon = 'http://img.upchinapro.com/share/logo/up.png' WHERE id = 1;
+
+UPDATE resource_owners SET user_nickname = '港草' WHERE id = 1;
+ALTER TABLE oauth_clients RENAME AS_clients;
+ALTER TABLE resource_owners RENAME AS_users;
+
+# 资源服务器图片资源
+CREATE TABLE rs_photos (
+	id int(11) NOT NULL AUTO_INCREMENT COMMENT '资源id',
+	u_id int(11) NOT NULL COMMENT '对应用户id',
+	r_link VARCHAR(255) NOT NULL COMMENT '图片资源链接',
+	r_title VARCHAR(20) DEFAULT '图片资源' COMMENT '图片title',
+	r_desc VARCHAR(150) COMMENT '图片资源描述'
+)

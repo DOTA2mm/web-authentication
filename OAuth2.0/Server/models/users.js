@@ -13,8 +13,8 @@ const connPool = mysql.createPool({
 });
 
 userModel.queryUser = function (username, password) {
-  debug(username, password);
-  return connPool.query(`SELECT * FROM resource_owners WHERE user_name = '${username}' and user_pwd = '${password}';`)
+  debug(`SELECT * FROM as_users WHERE user_name = '${username}' and user_pwd = '${password}';`);
+  return connPool.query(`SELECT * FROM as_users WHERE user_name = '${username}' and user_pwd = '${password}';`)
 }
 
 module.exports = userModel;

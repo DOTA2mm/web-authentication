@@ -1,6 +1,11 @@
 <%- include('./common/header') %>
     <div class="container">
         <div class="row">
+            <div class="col-lg-4 col-md-offset-4">
+                <h1 class="page-header">优品股票通<small>UPChina</small></h1>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
@@ -15,7 +20,9 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="密码" name="password" type="password">
                                 </div>
-                                <p class="text-danger">&nbsp;</p>
+                                <div class="form-group text-right">
+                                    <a class="btn btn-social-icon btn-dropbox"><i class="fa fa-dropbox"></i></a>
+                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <a id="login" href="javascript:;" class="btn btn-lg btn-success btn-block">登录</a>
                             </fieldset>
@@ -26,5 +33,5 @@
         </div>
     </div>
     <%- include('./common/jslib') %>
-        <script src="/js/login.js"></script>
-        <%- include('./common/footer') %>
+    <script src="/js/login.js"></script>
+    <%- include('./common/footer') %>
