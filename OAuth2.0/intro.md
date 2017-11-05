@@ -10,7 +10,7 @@
 OAuth的四个参与实体： 
 - `RO (resource owner)`: 资源所有者，对资源具有授权能力的人。
 - `Client`: 第三方应用，它获得RO的授权后便可以去访问RO的资源。
-- `AS (authorization server)`: 授权服务器，它认证RO的身份，为RO提供授权审批流程，并最终颁发授权令牌(Access Token)。读者请注意，为了便于协议的描述，这里只是在逻辑上把AS与RS区分开来；在物理上，AS与RS的功能可以由同一个服务器来提供服务。
+- `AS (authorization server)`: 授权服务器，它认证RO的身份，为RO提供授权审批流程，并最终颁发授权令牌(Access Token)。为了便于协议的描述，这里只是在逻辑上把AS与RS区分开来；在物理上，AS与RS的功能可以由同一个服务器来提供服务。
 - `RS (resource server)`: 资源服务器，它存储资源，并处理对资源的访问请求。
 
 ### OAuth 2.0的运行流程
