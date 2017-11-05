@@ -1,12 +1,9 @@
 <%- include('./common/header') %>
+    <link rel='stylesheet' href='/css/bootstrap-social.css' />
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-offset-4">
-                <h1 class="page-header">优品股票通<small>UPChina</small></h1>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-4 col-md-offset-4">
+                <h1 class="page-header">优品股票通<small>UPChina</small></h1>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">请登录</h3>
@@ -20,8 +17,15 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="密码" name="password" type="password">
                                 </div>
-                                <div class="form-group text-right">
-                                    <a class="btn btn-social-icon btn-dropbox"><i class="fa fa-dropbox"></i></a>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 text-left">
+                                            <span class="text-danger">第三方账号登录：</span>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <a id="thirdpart" href="javascript:;" class="btn btn-social-icon btn-info"><i class="glyphicon glyphicon-cloud"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <a id="login" href="javascript:;" class="btn btn-lg btn-success btn-block">登录</a>

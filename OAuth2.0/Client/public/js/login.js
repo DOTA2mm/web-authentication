@@ -1,4 +1,7 @@
 $(function () {
+    $('#thirdpart').on('click', function () {
+        document.location.href = 'http://localhost:3001/OAuth2/authorize?state=HIfhh7wGFk65H&redirect_uri=http://localhost:1002/auth/callback&response_type=code&client_id=4GU8Am5xxN&scope='
+    });
     $('#login').on('click', function () {
         var formData = $('form').serialize();
         $.ajax({

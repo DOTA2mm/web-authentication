@@ -34,7 +34,7 @@ app.use(session({
     httpOnly: true
   },
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: false
 }));
 
 app.use('/', index);

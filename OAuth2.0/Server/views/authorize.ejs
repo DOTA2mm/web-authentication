@@ -13,32 +13,40 @@
         <div class="panel-heading">
           授权中心
         </div>
-        <div class="panel-body">
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" data-src="holder.js/64x64" alt="icon" style="width: 64px; height: 64px;" src="<%= state.clientInfo.c_icon %>"
-                  data-holder-rendered="true">
-              </a>
+        <form method="POST" action="/OAuth2/authorize">          
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <img class="media-object" data-src="holder.js/64x64" alt="icon" style="width: 64px; height: 64px;" src="<%= state.clientInfo.c_icon %>"
+                    data-holder-rendered="true">
+                </a>
+              </div>
+              <div class="media-body">
+                <h3 class="media-heading"><%= state.clientInfo.c_name %></h4>
+                <h4><%= state.clientInfo.c_desc %></h4>
+              </div>
             </div>
-            <div class="media-body">
-              <h3 class="media-heading"><%= state.clientInfo.c_name %></h4>
-              <h4><%= state.clientInfo.c_desc %></h4>
-            </div>
+            <hr>
+            <h4>亲爱的<span class="text-primary"><%= userInfo.user_nickname %></span>，您将允许<%= state.clientInfo.c_name %>进行以下操作：</h4>
+            <br>
+            <ul>
+              <li>获得你的个人信息，好友关系</li>
+              <li>获得你的评论</li>
+            </ul>
+            <p class="text-right text-success">授权中心认证应用</p>
+            <input type="hidden" name="state" id="state" value="<%= state.clientInfo.state %>">
+            <input type="hidden" name="scope" id="scope" value="">
+            <input type="hidden" name="redirect_uri" id="redirect_uri" value="<%= state.clientInfo.c_redirecturi %>">
+            <input type="hidden" name="client_id" id="client_id" value="<%= state.clientInfo.c_id %>">
+            <input type="hidden" name="response_type" id="response_type" value="code">
+            <input type="hidden" name="uid" id="uid" value="<%= userInfo.id %>">
           </div>
-          <hr>
-          <h4>亲爱的<span class="text-primary"><%= userInfo.user_nickname %></span>，您将允许<%= state.clientInfo.c_name %>进行以下操作：</h4>
-          <br>
-          <ul>
-            <li>获得你的个人信息，好友关系</li>
-            <li>获得你的评论</li>
-          </ul>
-          <p class="text-right text-success">授权中心认证应用</a></p>
-        </div>
-        <div class="panel-footer text-right">
-         <button type="button" class="btn btn-success" id="confirm">&emsp;确定&emsp;</button>
-         <button type="button" class="btn btn-outline btn-danger" id="cancel">&emsp;取消&emsp;</button>
-        </div>
+          <div class="panel-footer text-right">
+          <button type="button" class="btn btn-success" id="confirm">&emsp;确定&emsp;</button>
+          <button type="button" class="btn btn-outline btn-danger" id="cancel">&emsp;取消&emsp;</button>
+          </div>
+        </form>        
         <!-- /.panel-body -->
       </div>
       <!-- /.panel -->

@@ -32,12 +32,17 @@ store.get = function (key) {
                 reject(err);
             } else {
                 let val = reply;
+                let valObj = null;
                 try {
-                    let valObj = JSON.parse(val);
+                    valObj = JSON.parse(val);
                 } catch (err) {
                     reject(err);
                 }
-                resolve(valObj);
+                if (valObj) {
+                    resolve(valObj);
+                } else {
+                    reject(new Error('Response is null.'))
+                }
             }
         });
     });
