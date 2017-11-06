@@ -23,7 +23,7 @@ function checkToken (req, res, next) {
 
     rdsStore.get(clientId).then(reply => {
         if (reply && reply.tokenInfo.access_token === asccessToken) {
-            debug('Token 校验成功');
+            debug('Token 校验成功', reply);
             if ((Date.now() - reply.tokenInfo.timestamp) / 1000 > reply.tokenInfo.expires_in) {
                 res.locals.state.errCode = -101
                 res.locals.state.errMsg = 'token 已过期';
@@ -53,9 +53,15 @@ function getResource (req, res, next) {
                 userNickname: res.locals.userInfo.user_nickname
             }
             res.locals.state.resources = rows;
+            res.send(res.locals.state);
+        }, err => {
+            res.locals.state.errCode = -200
+            res.locals.state.errMsg = '远程服务器获取资源失败';
+            res.send(res.locals.state);
         });
+    } else {
+        res.send(res.locals.state);
     }
-    res.send(res.locals.state);
 }
 
 module.exports = router;

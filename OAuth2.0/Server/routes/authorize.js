@@ -134,12 +134,13 @@ function checkAuthParam (req, res, next) {
       debug('有效的 access_token 请求');
       res.locals.state.userInfo = ret.userInfo;
     }
+    next();
   }, err => {
     console.log(err);
     res.locals.state.errCode = -400;
     res.locals.state.errMsg = '无效的 client_id';
+    next();
   });
-  next();
 }
 
 // 生成 access_token

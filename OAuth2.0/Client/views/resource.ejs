@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
       <div class="col-lg-8 col-md-offset-2">
-          <h2 class="page-header">资源列表</h2>
+          <h2 class="page-header">用户 <span class="text-danger"><%= userInfo.userNickname %></span> 的资源列表</h2>
       </div>
   </div>
   <!-- /.row -->
@@ -13,11 +13,11 @@
         <% resources.forEach((item, idx) => { %>
           <div class="media">
             <div class="media-left">
-              <img class="media-object" data-src="holder.js/64x64" style="width: 120px; height: 120px;" src="<%= item.r_link %>" data-holder-rendered="true">
+              <img class="media-object" data-src="holder.js/64x64" style="width: 150px; height: 150px;" src="<%= item.r_link %>" data-holder-rendered="true">
             </div>
             <div class="media-body">
-              <h4 class="media-heading"><%= item.r_title %></h4>
-              <p><%= item.r_desc %></p>
+              <h4 class="media-heading text-primary "><%= item.r_title %></h4>
+              <p class="text-warning"><%= item.r_desc %></p>
             </div>
           </div>
           <hr>

@@ -22,35 +22,32 @@ function init (req, res, next) {
 
 // 确认用户登录
 function getResource (req, res, next) {
-    if (req.session.userInfo) {
-        // 登录用户
+    rdsStore.get('HIfhh7wGFk65H').then(reply => {
+        if (reply && reply.client_id) {
+            httpPost('http://localhost:3001/api/resource', {
+                clientId: reply.client_id,
+                asccessToken: reply.access_token
+            }).then(ret => {
+                if (ret.errCode === 0) {
+                    res.locals.userInfo = ret.userInfo;
+                    res.locals.resources = ret.resources;
+                } else {
+                    res.locals.state.errCode = ret.errCode;
+                    res.locals.state.errMsg = ret.errMsg;
+                }
+                next();
+            })
+        } else {
+            res.locals.state.errCode = -2000;
+            res.locals.state.errMsg = '未找到 token 信息';
+            next();
+        }
+    }, err => {
+        debug('获取 token 失败. %O', err);
+        res.locals.state.errCode = -4000;
+        res.locals.state.errMsg = '获取 token 失败';
         next();
-    } else {
-        rdsStore.get('HIfhh7wGFk65H').then(reply => {
-            if (reply && reply.client_id) {
-                httpPost('http://localhost:3001/api/resource', {
-                    clientId: reply.client_id,
-                    asccessToken: reply.asccess_token
-                }).then(ret => {
-                    if (ret.errCode === 0) {
-                        res.locals.userInfo = ret.userInfo;
-                        res.locals.resources = ret.resources;
-                    } else {
-                        res.locals.state.errCode = -300;
-                        res.locals.state.errMsg = '远程服务异常';
-                    }
-                })
-            } else {
-                res.locals.state.errCode = -200;
-                res.locals.state.errMsg = '未找到 token 信息';
-            }
-        }, err => {
-            debug('获取 token 失败. %O', err);
-            res.locals.state.errCode = -400;
-            res.locals.state.errMsg = '获取 token 失败';
-        });
-        next();
-    }
+    });
 }
 
 /**
