@@ -3,13 +3,13 @@ var router = express.Router();
 var utils = require('../lib/utils');
 var rdsStore = require('../models/rdsStore');
 var request = require('request');
-var debug = require('debug')('OAuth:Client');
+var debug = require('debug')('Client:authorize');
 
 // 第三方服务提供商 key: 提供给 AS 的 state
 const athorizeServersMap = {
   'HIfhh7wGFk65H': {
     redirect_uri: 'http://localhost:1002/auth/callback', // 提供给 AS 的重定向 uil
-    client_id: '4GU8Am5xxN', // AS 提供的本应用 id
+    client_id: '4GU8Am5xxN' // AS 提供的本应用 id
   }
 }
 
@@ -23,7 +23,7 @@ router.use('/', function (req, res, next) {
 // 换取 access_token
 router.get('/callback', init, checkParam, getAccessToken, function (req, res, next) {
   if (res.locals.state.errCode === 0) {
-    res.redirect('./resource');
+    res.redirect('/resource');
   } else {
     res.render('auth_err');
   }
@@ -73,15 +73,18 @@ function getAccessToken (req, res, next) {
     }
     httpPost('http://localhost:3001/OAuth2/authorize/access', params).then(ret => {
       if (ret.errCode === 0) {
-        debug('getAccessToken | Get access_token successful.', ret);
+        debug('getAccessToken | Get access_token successful. | %O', ret);
         rdsStore.set(req.query.state, {
-          client_id: client_id,
-          access_token: access_token,
-          refresh_token: refresh_token,
-          expires_in: expires_in
-        }).then(reply => {
-          console.log(reply);
-        })
+          client_id: params.client_id,
+          access_token: ret.access_token,
+          refresh_token: ret.refresh_token,
+          expires_in: ret.expires_in
+        }, ret.expires_in).then(reply => {
+          if (reply !== 'OK') {
+            res.locals.state.errCode = -510;
+            res.locals.state.errMsg = 'token 存储失败';
+          }
+        });
       } else {
         res.locals.state.errCode = ret.errCode;
         res.locals.state.errMsg = ret.errMsg;
@@ -89,7 +92,7 @@ function getAccessToken (req, res, next) {
       next();
     }, err => {
       console.log(err);
-      res.locals.state.errCode = -100;
+      res.locals.state.errCode = -500;
       res.locals.state.errMsg = '换取 access_token 发生异常';
       next();
     });

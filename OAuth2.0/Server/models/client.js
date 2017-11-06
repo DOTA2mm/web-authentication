@@ -1,6 +1,6 @@
 const mysql = require('promise-mysql');
 const conf = require('../lib/config');
-const debug = require('debug')('Models')
+const debug = require('debug')('Server:models.client');
 
 const clientModel = {};
 

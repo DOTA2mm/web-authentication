@@ -135,6 +135,7 @@ function checkAuthParam (req, res, next) {
       res.locals.state.userInfo = ret.userInfo;
     }
   }, err => {
+    console.log(err);
     res.locals.state.errCode = -400;
     res.locals.state.errMsg = '无效的 client_id';
   });
@@ -148,10 +149,12 @@ function generateToken (req, res, next) {
     var refreshToken = utils.randomWord(false, 20);
      // 生成 token 后删除 code (一次性 authorization_code)
      Promise.all([rdsStore.del(req.body.client_id), rdsStore.set(req.body.client_id, {
-      access_token: accessToken,
-      refresh_token: refreshToken,
-      expires_in: 36000,
-      timestamp: Date.now(),
+      tokenInfo: {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        expires_in: 36000,
+        timestamp: Date.now()
+      },
       userInfo: res.locals.state.userInfo
     }, 36000)]).then(([ret0, ret1]) => {
       if (ret0 === 1 && ret1 === 'OK') {
@@ -171,12 +174,11 @@ function generateToken (req, res, next) {
         res.send(res.locals.state);
       }
     }).catch((err) => {
+      console.log(err);
       res.locals.state.errCode = -510;
       res.locals.state.errMsg = 'Generate access token has exception.';
       res.send(res.locals.state);
     })
-    
-    
   } else {
     res.send(res.locals.state);
   }

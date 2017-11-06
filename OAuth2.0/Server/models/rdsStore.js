@@ -3,7 +3,8 @@ const conf = require('../lib/config');
 
 const client = redis.createClient({
     host: conf.redis.host,
-    port: conf.redis.port
+    port: conf.redis.port,
+    db: 1
 });
 const store = {};
 

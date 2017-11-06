@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/OAuth2/login', require('./login'));
 router.use('/OAuth2/authorize', require('./authorize'));
+router.use('/api', require('./api'));
 
 module.exports = router;

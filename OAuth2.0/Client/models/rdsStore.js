@@ -3,7 +3,8 @@ const conf = require('../lib/config');
 
 const client = redis.createClient({
     host: conf.redis.host,
-    port: conf.redis.port
+    port: conf.redis.port,
+    db: 2
 });
 const store = {};
 
@@ -17,7 +18,7 @@ store.set = function (key, obj, expires) {
             if (err) {
                 reject(err);
             } else {
-                client.expire(key, expires);
+                client.expire(key, expires || -1);
                 console.log(reply);
                 resolve(reply);
             }
