@@ -1,0 +1,31 @@
+<%- include('./common/header') %>
+
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-md-offset-3">
+          <h1 class="page-header">第三方认证</h1>
+      </div>
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-lg-6 col-md-offset-3">
+      <div class="panel panel-red">
+        <div class="panel-heading">
+          第三方认证
+        </div>
+        <div class="panel-body">
+          <h3>授权过程出现异常</h3>
+          <br>
+          <p class="lead text-danger">错误代码： <%= state.errCode %></p>
+          <p class="lead text-danger">错误信息： <%= state.errMsg %></p>
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+    </div>
+  </div>
+</div>
+
+<%- include('./common/jslib') %>
+<script src="/js/login.js"></script>
+<%- include('./common/footer') %>
